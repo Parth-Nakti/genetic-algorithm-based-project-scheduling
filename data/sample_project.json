@@ -1,0 +1,10 @@
+{
+    "tasks": [
+        {"id": 1, "name": "Requirements", "duration": 3, "cost": 500, "risk": 0.1, "dependencies": []},
+        {"id": 2, "name": "Frontend Dev", "duration": 5, "cost": 1200, "risk": 0.3, "dependencies": [1]},
+        {"id": 3, "name": "Backend Dev", "duration": 8, "cost": 2000, "risk": 0.4, "dependencies": [1]},
+        {"id": 4, "name": "Integration", "duration": 2, "cost": 800, "risk": 0.5, "dependencies": [2, 3]},
+        {"id": 5, "name": "Security Audit", "duration": 3, "cost": 1000, "risk": 0.7, "dependencies": [4]},
+        {"id": 6, "name": "Deployment", "duration": 1, "cost": 300, "risk": 0.1, "dependencies": [5]}
+    ]
+}
