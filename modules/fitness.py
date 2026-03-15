@@ -23,7 +23,7 @@ def calculate_metrics(chromosome):
     chromosome.cost = total_cost
     chromosome.risk = total_risk
 
-def fitness_function(chromosome, deadline=15): # <--- MUST MATCH SCHEDULER
+def fitness_function(chromosome, deadline=15): 
     calculate_metrics(chromosome)
     
     time_weight, cost_weight, risk_weight = 0.5, 0.3, 0.2
@@ -32,11 +32,9 @@ def fitness_function(chromosome, deadline=15): # <--- MUST MATCH SCHEDULER
              cost_weight * (chromosome.cost / 1000) + 
              risk_weight * chromosome.risk)
 
-    # Logic Penalty
     dep_violations = check_dependency_violations(chromosome)
     dep_penalty = dep_violations * 10000 
 
-    # Deadline Penalty
     deadline_penalty = 0
     if chromosome.duration > deadline:
         deadline_penalty = (chromosome.duration - deadline) * 5000

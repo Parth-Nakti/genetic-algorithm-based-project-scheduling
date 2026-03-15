@@ -1,10 +1,10 @@
 {
     "tasks": [
-        {"id": 1, "name": "Requirements & UI Wireframes", "duration": 4, "cost": 600, "risk": 0.1, "dependencies": []},
-        {"id": 2, "name": "API & Database Design", "duration": 3, "cost": 500, "risk": 0.2, "dependencies": [1]},
-        {"id": 3, "name": "Frontend Development", "duration": 8, "cost": 2000, "risk": 0.4, "dependencies": [2]},
-        {"id": 4, "name": "Backend Development", "duration": 10, "cost": 2500, "risk": 0.5, "dependencies": [2]},
-        {"id": 5, "name": "Integration & Testing", "duration": 3, "cost": 1000, "risk": 0.6, "dependencies": [3, 4]},
-        {"id": 6, "name": "Cloud Deployment", "duration": 2, "cost": 400, "risk": 0.2, "dependencies": [5]}
+        {"id": 1, "name": "Req Gathering", "duration": 4, "cost": 1000, "risk": 0.1, "dependencies": [], "o": 3, "m": 4, "p": 6},
+        {"id": 2, "name": "System Design", "duration": 5, "cost": 1500, "risk": 0.2, "dependencies": [1], "o": 4, "m": 5, "p": 8},
+        {"id": 3, "name": "Outsourced Module (Path A)", "duration": 6, "cost": 7000, "risk": 0.9, "dependencies": [2], "o": 5, "m": 6, "p": 25},
+        {"id": 4, "name": "In-house Dev (Path B)", "duration": 10, "cost": 2500, "risk": 0.2, "dependencies": [2], "o": 9, "m": 10, "p": 12},
+        {"id": 5, "name": "Cloud Integration", "duration": 4, "cost": 1200, "risk": 0.3, "dependencies": [3, 4], "o": 3, "m": 4, "p": 10},
+        {"id": 6, "name": "Final QA", "duration": 3, "cost": 800, "risk": 0.1, "dependencies": [5], "o": 2, "m": 3, "p": 5}
     ]
 }
