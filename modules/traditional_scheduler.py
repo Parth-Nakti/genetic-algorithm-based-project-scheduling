@@ -6,7 +6,6 @@ def run_cpm(tasks):
     for t in tasks:
         t['es'] = t['ef'] = t['ls'] = t['lf'] = 0
 
-    # Forward Pass
     for t in tasks:
         if not t['dependencies']:
             t['es'] = 0
@@ -16,7 +15,6 @@ def run_cpm(tasks):
 
     project_duration = max(t['ef'] for t in tasks)
 
-    # Backward Pass
     for t in reversed(tasks):
         successors = [s for s in tasks if t['id'] in s['dependencies']]
         if not successors:
@@ -25,14 +23,13 @@ def run_cpm(tasks):
             t['lf'] = min(s['ls'] for s in successors)
         t['ls'] = t['lf'] - t['duration']
 
-    # Identify Critical Path Tasks
     critical_tasks = [t for t in tasks if (t['lf'] - t['es'] - t['duration']) == 0]
     critical_path_names = [t['name'] for t in critical_tasks]
 
     return {
         "project_duration": project_duration,
         "critical_path": critical_path_names,
-        "critical_tasks": critical_tasks, # New: returning full objects for cost/risk math
+        "critical_tasks": critical_tasks, 
         "schedule": tasks
     }
 
@@ -47,7 +44,7 @@ def run_pert(tasks):
         
         new_task = t.copy()
         new_task['duration'] = round(expected_time, 2)
-        # Ensure cost and risk are explicitly kept
+
         new_task['cost'] = t.get('cost', 0)
         new_task['risk'] = t.get('risk', 0)
         pert_tasks.append(new_task)

@@ -9,7 +9,7 @@ from visualization.graphs import plot_comparison_chart
 from modules.fitness import check_dependency_violations
 
 def main():
-    # 1. Configuration
+
     file_path = sys.argv[1] if len(sys.argv) > 1 else "data/sample_project.json"
     target_deadline = int(sys.argv[2]) if len(sys.argv) > 2 else 25
     max_budget = int(sys.argv[3]) if len(sys.argv) > 3 else 10000
@@ -22,24 +22,21 @@ def main():
     tasks = load_project_data(file_path)
     print(f"--- Starting SEPM Analysis for {os.path.basename(file_path)} ---")
 
-    # 2. RUN ALGORITHMS
     best_ga_schedule = run_ga(tasks=tasks, deadline=target_deadline)
     cpm_result = run_cpm(tasks)
     pert_result = run_pert(tasks)
 
-    # 3. Validation
     violations = check_dependency_violations(best_ga_schedule)
     is_over_budget = best_ga_schedule.cost > max_budget
     is_over_deadline = best_ga_schedule.duration > target_deadline
     is_high_risk = best_ga_schedule.risk > max_risk
 
-    # 4. OUTPUT
     print("\n" + "="*65)
     if violations > 0 or is_over_deadline or is_over_budget or is_high_risk:
         print("❌ GA STATUS: INFEASIBLE (Constraints Violated)")
     else:
         print("✅ GA STATUS: OPTIMIZED SUCCESS")
-        print(f"GA Duration: {best_ga_schedule.duration}d | Cost: ${best_ga_schedule.cost} | Risk: {best_ga_schedule.risk:.2f}")
+        print(f"GA Duration: {best_ga_schedule.duration}d | Cost: ₹{best_ga_schedule.cost} | Risk: {best_ga_schedule.risk:.2f}")
 
     print("-" * 65)
     print(f"📊 TRADITIONAL BASELINES:")
@@ -48,7 +45,6 @@ def main():
     print(f"Critical Path: {' -> '.join(cpm_result['critical_path'])}")
     print("="*65 + "\n")
 
-    # 5. VISUALIZATION
     plot_gantt(best_ga_schedule)
     plot_comparison_chart(best_ga_schedule, cpm_result, pert_result)
 
