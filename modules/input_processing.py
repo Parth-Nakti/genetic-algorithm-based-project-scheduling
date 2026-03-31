@@ -5,7 +5,6 @@ def load_project_data(path):
         data = json.load(f)
     return data["tasks"]
 
-
 def validate_dependencies(tasks):
 
     task_ids = [t["id"] for t in tasks]

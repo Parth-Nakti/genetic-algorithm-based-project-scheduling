@@ -27,4 +27,4 @@ def plot_gantt(schedule):
     ax.invert_yaxis()  
     plt.grid(axis='x', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.show()
+    return plt.gcf()  # Returns the Current Figure to Streamlit

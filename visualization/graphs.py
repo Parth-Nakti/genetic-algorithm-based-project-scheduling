@@ -47,7 +47,7 @@ def plot_comparison_chart(ga_res, cpm_res, pert_res):
 
     ax2.bar(labels, costs, color=['#4CAF50', '#2196F3', '#FF9800'], width=width, edgecolor='black')
     ax2.set_title('Cost (Includes Overtime Penalties)')
-    ax2.set_ylabel('USD')
+    ax2.set_ylabel('INR')
     for i, v in enumerate(costs):
         ax2.text(i, v + 200, f"₹{int(v)}", ha='center', fontweight='bold')
 
@@ -58,5 +58,5 @@ def plot_comparison_chart(ga_res, cpm_res, pert_res):
         ax3.text(i, v + 0.05, f"{v:.2f}", ha='center', fontweight='bold')
 
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-    print("📊 Displaying Comparison Chart... Close window to finish.")
-    plt.show()
+    # Return the figure object instead of showing a popup
+    return fig
